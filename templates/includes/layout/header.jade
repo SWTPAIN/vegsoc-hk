@@ -1,10 +1,19 @@
 //- HEADER
 header(id='header', role='banner', class=(section == 'home' ? 'header--home' : 'header--page'))
+	.header
+		//- Intro
+		.header-background
+		.header-intro.header-intro--hasmask
+			.hero-intro-content.row
+				.col-sm-4
+					a(href='/', title='Back to Home').site-branding
+						img(src='/images/logo.png')			
+				.col-sm-8
+					h1.title Animal Are Not Ours
+					p.intro To Eat, Wear, Experiment ON, Use For Entertainment
 	nav.navbar(role='navigation'): .container
 		//- Site logo + site nav trigger button (on mobile)
 		.navbar-header
-			a(href='/', title='Back to Home').site-branding
-				img(src='/images/logo.png')
 			//- User avatar
 			if user
 				a(href='/me').user.visible-xs

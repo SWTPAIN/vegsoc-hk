@@ -13,29 +13,9 @@
 	background-color: transparent;
 }
 
-/*
-// Navbar on home page
-#header.header--home {
-	&.headroom--top .navbar {
-		background-color: transparent;
-	}
-	&.headroom--not-top.slideDown .navbar,
-	&.headroom--not-top.headroom--middle.slideUp .navbar {
-
-	}
-}
-
-// Navbar on other page
-#header.header--page {
-	.navbar {
-		background-color: fade(@navbar-default-bg, 98%);
-	}
-}
- */
-
-
 // General styles
 .navbar {
+	background-color: @navbar-default-bg;
 	.clearfix();
 	margin: 0;
 	font-weight: 500;
@@ -56,7 +36,7 @@
 	width: 120px;
 
 	img {
-		height: @navbar-height + 10;
+		height: @header-height;
 	}
 }
 
@@ -241,4 +221,27 @@ nav {
 			}
 		}
 	}
+}
+
+.header {
+	height: 100px;
+	background: url('/images/placeholders/lovely_pig.jpg') no-repeat center center / cover;
+	background-color: @gray-dark;
+	.hero-intro-content {
+		h1 {
+			color: white;
+			size: 30px;
+			margin: 0;
+		}
+		p {
+			color: white;
+			size: 20px;
+		}
+	}
+
+	.header-intro--hasmask {
+		height: 100%;
+		#gradient .vertical(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+	}
+
 }
