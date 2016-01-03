@@ -1,0 +1,36 @@
+extends ../../layouts/default
+
+include ../../mixins/organiser
+
+block intro
+	.page-intro: .container
+		h1.page-title About
+		p.lead 香港素食會
+		p.lead 在1995年成立的「香港素食學會」已於2005年2月底結束，變成了新的「香港素食會」（Hong Kong Vegetarian Society），保持原有的宗旨，繼續推廣素食生活，並加入綠色生活教育基金（一個於2004年12月在香港創會的註冊慈善團體），成為它旗下項目 Club O的一個小組。
+
+block content
+	.page-content
+		.section.highlight: .container
+			h2 Organisers
+			p. our team
+			.row.about-organisers
+				each org in organisers
+					.col-sm-3
+						+organiser(org)
+			
+		
+		//- CODE
+		.section: .container-sm
+			h2 香港素食會繼續舉辦各種推廣素食的活動，目前主要包括：
+			p 逢星期六下午1:30在Club O會址的「禪食午餐」，免費招待四方有緣人，共享高能量進食的空靈提升經驗。
+			p 在禪食午餐之後（2:30）舉行「廚藝觀摩」，現場綠色飲食製作，並回答出席者的提問。見本期介紹的菜譜。
+			p 不斷舉辦綠色飲食聚會，例如4月24日的工作坊。
+			p 外展工作，到各區社團做示範、講座、展覽，例如在嘉道理農場每月的有機農墟擺檔。
+			p 此外，香素不斷出版各類刊物，供各方免費取閱，包括《茹素》月刊（印行10,000份）及多種食譜，例如剛出版的《水果保健治病妙法》，歡迎你光臨會址自取。
+
+			p 香港素食學會原來的永久會員，自動成為Club O永久會員（入會費$2500豁免）。原來的其他會籍，照樣享有Club O同類會籍的權利（收到會訊、活動優惠、消費優惠等），直到會籍限期屆滿時續會，可登記為Club O會員，繳交Club O會費。請於辦公時間及活動期間光臨Club O會址辦理手續。
+
+block js
+	// twitter
+	script.
+		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
