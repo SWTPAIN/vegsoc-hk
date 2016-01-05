@@ -1,12 +1,8 @@
 var babelify = require('babelify');
-var bodyParser = require('body-parser');
 var browserify = require('browserify-middleware');
 var clientConfig = require('../client/config');
 var keystone = require('keystone');
 var middleware = require('./middleware');
-var graphqlHTTP = require('express-graphql');
-var graphQLSchema = require('../graphql/basicSchema').default;
-var relaySchema = require('../graphql/relaySchema').default;
 
 var importRoutes = keystone.importer(__dirname);
 
@@ -72,9 +68,6 @@ exports = module.exports = function (app) {
 	app.get('/', routes.views.index);
 	app.get('/meetups', routes.views.meetups);
 	app.get('/meetups/:meetup', routes.views.meetup);
-	app.get('/members', routes.views.members);
-	app.get('/members/mentors', routes.views.mentors);
-	app.get('/member/:member', routes.views.member);
 	app.get('/organisations', routes.views.organisations);
 	app.get('/links', routes.views.links);
 	app.get('/links/:tag?', routes.views.links);
@@ -82,8 +75,8 @@ exports = module.exports = function (app) {
 	app.get('/blog/:category?', routes.views.blog);
 	app.all('/blog/post/:post', routes.views.post);
 	app.get('/about', routes.views.about);
-	app.get('/mentoring', routes.views.mentoring);
 
+	app.get('/animal-rights', routes.views.animalRights);
 	app.get('/download-center', routes.views.downloadCenter);
 
 	// Session
