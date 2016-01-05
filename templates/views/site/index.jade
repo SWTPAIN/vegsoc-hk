@@ -25,15 +25,17 @@ block content
 				each post in data.posts
 					.col-xs-12.col-sm-6
 						.card
-							.card.tile.front
-								.card-image
-								section.card-body
-									p.datestamp
-										time(datetime=post._.publishedDate.format('YYYY-MM-DD'), itemprop='datePublished')=post._.publishedDate.format('MMMM D, YYYY')
-									p.card-tags
-										each category in post.categories
-											span= category.name
-									h2.card-heading= post.title
+							.tile.front
+								.card-main
+									a(href='/blog/post/' + post.slug, itemprop='url')
+										.card-image
+										section.card-body
+											p.datestamp
+												time(datetime=post._.publishedDate.format('YYYY-MM-DD'), itemprop='datePublished')=post._.publishedDate.format('MMMM D, YYYY')
+											p.card-tags
+												each category in post.categories
+													span= category.name
+											h2.card-heading= post.title
 								section.chart
 									.rating-bar-1.rating-small
 									.rating-bar-2.rating-large

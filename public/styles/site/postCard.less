@@ -17,7 +17,27 @@
   //position: absolute;
   // width: 400px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.075);
+  transition: all .15s cubic-bezier(.33,.66,.66,1);
+  border-radius: 1px;
+  box-shadow: -1px 0 2px 0 rgba(0,0,0,0.12) , 1px 0 2px 0 rgba(0,0,0,0.12) , 0 1px 1px 0 rgba(0,0,0,0.24);
+  &:hover {
+    box-shadow: -2px 0 2px 0 rgba(0,0,0,0.16),2px 0 2px 0 rgba(0,0,0,0.16) , 0 2px 2px 0 rgba(0,0,0,0.23);
+    transform: translate3d(0,-3px,0);
+  }
 }
+
+.card-main {
+  cursor: pointer;
+  a {
+    text-decoration: none;
+  }
+  &:hover {
+    .card-heading {
+      color: rgba(0, 0, 0, 0.6);;
+    }
+  }
+}
+
 .card-image {
   background: url(http://lorempixel.com/640/220/nature);
   background-position: center;
@@ -25,6 +45,7 @@
   height: 220px;
   max-width: 100%;
 }
+
 .datestamp {
   display: inline-block;
   padding: 3px 8px;
@@ -46,6 +67,7 @@
   font-size: 1.5em;
   font-weight: 300;
   margin-bottom: 16px;
+  transition: color 0.5s ease;
 }
 .card-tags {
   color: @light-gray;
