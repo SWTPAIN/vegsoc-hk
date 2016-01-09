@@ -1,27 +1,47 @@
 extends ../../layouts/default
 
-//- BODY
-block content
+block intro
 	article#download-center
 		header.download-center-header
 			.container: .row: .col-sm-10.col-sm-offset-1
 				h1.text-center.mb-0 The VegsocHK Download Center
 				p.lead.text-center.mt-1 You can download all the leafleft, restaurant guide...
+
+//- BODY
+block content
+	article#download-center
+		header.download-center-main
 			.download-center-hero
 			.download-center-buttons
-				.container: .row
-					.col-sm-4
-						.text-center: a(href='http://github.com/borisbozic/sydjs-assets', target='_blank').btn.btn-primary.btn-lg.btn-block
-							span.entypo.entypo-down &nbsp;
-							| Leafleaf
-					.col-sm-4
-						.text-center: a(href='http://github.com/borisbozic/sydjs-assets', target='_blank').btn.btn-primary.btn-lg.btn-block
-							span.entypo.entypo-down &nbsp;
-							| Restaurant Guide
-					.col-sm-4
-						.text-center: a(href='http://github.com/borisbozic/sydjs-assets', target='_blank').btn.btn-primary.btn-lg.btn-block
-							span.entypo.entypo-down &nbsp;
-							| Nutrition Guide
+				.row
+					ul.list-group
+						li.list-group-item.row
+							.download-center-item-image.col-xs-4
+								img(src="http://www.peta2.com/wp-content/uploads/2015/04/Meats-Not-Green-leaflet-571x370.jpg")
+							.download-center-item-description.col-xs-8
+								h2 Leaflet
+								p vegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan
+								a.download-center-download-button
+									span Download
+									i.glyphicon.glyphicon-download
+						li.list-group-item.row
+							.download-center-item-image.col-xs-4
+								img(src="http://www.peta2.com/wp-content/uploads/2015/04/Meats-Not-Green-leaflet-571x370.jpg")
+							.download-center-item-description.col-xs-8
+								h2 Nutrition Guide
+								p vegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan
+								a.download-center-download-button
+									span Download
+									i.glyphicon.glyphicon-download
+						li.list-group-item.row
+							.download-center-item-image.col-xs-4
+								img(src="http://www.peta2.com/wp-content/uploads/2015/04/Meats-Not-Green-leaflet-571x370.jpg")
+							.download-center-item-description.col-xs-8
+								h2 Restaurant Guide
+								p vegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan veganvegan
+								a.download-center-download-button
+									span Download
+									i.glyphicon.glyphicon-download
 
 block js
 	script.
