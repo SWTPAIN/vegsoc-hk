@@ -1,0 +1,28 @@
+@donationFormColor: #E06D4C;
+
+.donation-form-wrapper {
+  margin-top: 30px;
+  background-color: @donationFormColor;
+  padding: 1em 2em;
+  color: #eee;
+  font-weight: 300;
+ .donate-button {
+   background-color:#ffffff;
+   color: @donationFormColor;
+   font-size:28px;
+   font-weight: 500;
+   padding: 0.2em 0.4em;
+   text-decoration:none;
+   transition: all linear 0.5s;
+   width: 100%;
+   &:hover {
+     background-color: @donationFormColor;
+     color:#ffffff;
+   }
+
+   &:active {
+     position:relative;
+     top:3px;
+   }
+ }
+}

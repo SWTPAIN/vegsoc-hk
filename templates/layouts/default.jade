@@ -39,14 +39,15 @@ html
 			
 			//- SITE BODY
 			block body
-				main.site-body(role='main')
-
+				main.site-body(role='main').row
 					block intro
 
 					block flash-messages
 						+flash-messages(messages)
-
-					block content
+					.col-md-9
+						block content
+					.col-md-3
+						block content-side
 						
 			//- SITE FOOTER
 			block footer
