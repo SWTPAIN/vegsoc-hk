@@ -72,8 +72,8 @@ exports = module.exports = function (app) {
 	app.get('/links', routes.views.links);
 	app.get('/links/:tag?', routes.views.links);
 	app.all('/links/link/:link', routes.views.link);
-	app.get('/blog/:category?', routes.views.blog);
-	app.all('/blog/post/:post', routes.views.post);
+	app.get('/article/:category?', routes.views.article);
+	app.all('/article/post/:post', routes.views.post);
 	app.get('/about', routes.views.about);
 
 	app.get('/animal-rights', routes.views.animalRights);

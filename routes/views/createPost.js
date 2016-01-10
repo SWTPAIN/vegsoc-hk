@@ -7,7 +7,7 @@ exports = module.exports = function(req, res) {
 		locals = res.locals;
 
 	locals.section = 'me';
-	locals.page.title = 'Create a blog post - VegsocHK';
+	locals.page.title = 'Create a article - VegsocHK';
 
 	view.on('post', { action: 'create-post' }, function(next) {
 
@@ -36,7 +36,7 @@ exports = module.exports = function(req, res) {
 			} else {
 				newPost.notifyAdmins();
 				req.flash('success', 'Your post has been added' + ((newPost.state == 'draft') ? ' and will appear on the site once it\'s been approved' : '') + '.');
-				return res.redirect('/blog/post/' + newPost.slug);
+				return res.redirect('/article/post/' + newPost.slug);
 			}
 			next();
 		});

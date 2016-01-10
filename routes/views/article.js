@@ -8,7 +8,7 @@ exports = module.exports = function(req, res) {
 
 	// Init locals
 	locals.section = 'blog';
-	locals.page.title = 'Blog - VegsocHK';
+	locals.page.title = 'Article - VegsocHK';
 	locals.filters = {
 		category: req.params.category
 	};
@@ -75,6 +75,6 @@ exports = module.exports = function(req, res) {
 	});
 
 	// Render the view
-	view.render('site/blog');
+	view.render('site/article');
 
 }
