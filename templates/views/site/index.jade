@@ -28,7 +28,7 @@ block content
 							.tile.front
 								.card-main
 									a(href='/article/post/' + post.slug, itemprop='url')
-										.card-image
+										.card-image(style={background: 'url(' + (post.image.secure_url || '/images/post-default-cover.jpg') + ')  no-repeat center center'})
 										section.card-body
 											p.datestamp
 												time(datetime=post._.publishedDate.format('YYYY-MM-DD'), itemprop='datePublished')=post._.publishedDate.format('MMMM D, YYYY')
