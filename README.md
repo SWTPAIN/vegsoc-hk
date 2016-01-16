@@ -54,12 +54,6 @@ ssh root@128.199.244.233
 apt-get update; apt-get upgrade
 sudo apt-get install build-essential libssl-dev
 
-
-useradd deployer
-visudo
-deployer ALL=(ALL) NOPASSWD: ALL
-
-
 apt-get -y install nginx
 service nginx start
 mkdir -p /var/www
@@ -83,19 +77,13 @@ ln -s ../sites-available/vegsochk.org
 service nginx reload
 ```
 
-# Server Nodejs setup
-
-```
-curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
-nvm install 4.2.2
-nvm alias default 4.2.2
-```
-
 # Server git deploy setup
 
 ```
 apt-get -y install git
 groupadd git
+visudo
+git ALL=(ALL) NOPASSWD: ALL
 mkdir -p /home/git/.ssh
 touch /home/git/.ssh/authorized_keys
 chmod 600 /home/git/.ssh/authorized_keys
@@ -103,14 +91,23 @@ useradd -g git -G www-data -d /home/git -s /bin/bash git
 chown -R git:git /home/git
 ```
 
+# Server Nodejs setup
+
+```
+curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
+nvm install 4.2.2
+nvm alias default 4.2.2
+npm install -g npm@3.5.3
+```
+
 Login as git and configure the git folders
 
 ```
 su - git
 echo 'export PATH=$PATH:/usr/sbin' > .profile
-mkdir -p /home/git/tmp/vegoc-hk
-mkdir -p /home/git/repos/vegoc-hk.git
-cd /home/git/repos/vegoc-hk.git
+mkdir -p /home/git/tmp/vegsoc-hk
+mkdir -p /home/git/repos/vegsoc-hk.git
+cd /home/git/repos/vegsoc-hk.git
 git init --bare
 cd hooks
 touch post-receive
