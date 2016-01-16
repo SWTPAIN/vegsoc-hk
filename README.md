@@ -57,8 +57,8 @@ apt-get install build-essential libssl-dev
 apt-get -y install nginx
 service nginx start
 mkdir -p /var/www
-chown -R www-data:www-data /var/www
-chmod -R g+rws /var/www
+sudo chown root:git -R /var/www
+sudo chmod 775 /var/www
 
 rm /etc/nginx/sites-enabled/default
 cd /etc/nginx/sites-available
@@ -72,15 +72,20 @@ server {
         access_log /var/log/nginx/vegsochk_access.log;
         error_log /var/log/nginx/vegsochk_error.log;
 
-        root /var/www/public;
+        root /var/www/vegsochk.org/public;
 
         location ~ ^/keystone/(.+\.(?:jpg|jpeg|svg|eot|html|woff|woff2|ttf|png|gif|ico|css|js))$ {
-                alias /var/www/node_modules/keystone/public/$1;
+                alias /var/www/vegsochk.org/node_modules/keystone/admin/public/$1;
                 expires 30d;
                 access_log off;
         }
 
-        location ~*  \.(jpg|jpeg|svg|eot|html|woff|woff2|ttf|png|gif|ico|css|js)$ {
+        location ~*  \.(jpg|jpeg|svg|eot|html|woff|woff2|ttf|png|gif|ico|css)$ {
+                expires 30d;
+                access_log off;
+        }
+
+        location ~*  /lib/\.(js)$ {
                 expires 30d;
                 access_log off;
         }
@@ -119,12 +124,7 @@ chown -R git:git /home/git
 # Server Nodejs setup
 
 ```
-curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
-nvm install 4.1.0
-nvm alias default 4.1.0
-npm install -g npm@2.14.3
 npm install -g forever
-n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,share} /usr/local
 ```
 
 Login as git and configure the git folders
@@ -154,7 +154,12 @@ cd $TMP_GIT_CLONE
 npm install
 cp -a $TMP_GIT_CLONE/ $PUBLIC_WWW
 rm -Rf $TMP_GIT_CLONE
-cd $PUBLIC_WWW forever start
+
+
+cd $PUBLIC_WWW
+forever stop keystone.js
+cp /var/www/shared/vegsoc-hk/.env $PUBLIC_WWW/.env
+forever start -o logfile.out -e logerror.out keystone.js
 exit
 ```
 
