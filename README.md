@@ -125,7 +125,7 @@ PUBLIC_WWW=/var/www/vegsochk.org
 git clone $GIT_REPO $TMP_GIT_CLONE
 cd $TMP_GIT_CLONE
 npm install
-cp -a $TMP_GIT_CLONE/dist/. $PUBLIC_WWW
+cp -a $TMP_GIT_CLONE/. $PUBLIC_WWW
 rm -Rf $TMP_GIT_CLONE exit
 cd $PUBLIC_WWW forever start
 ```
