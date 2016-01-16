@@ -44,3 +44,113 @@ The first time you run the site, the homepage will warn you that it expects ther
 You'll probably want to add some other content too (blog post, members, etc) to get all the pages looking right.
 
 ... happy hacking!
+
+### Deploy
+# Server Nginx setup
+Create a digital ocean droplet got the new IP in digital ocean web console, e.g. 128.199.244.233
+
+```
+ssh root@128.199.244.233
+apt-get update; apt-get upgrade
+sudo apt-get install build-essential libssl-dev
+
+
+useradd deployer
+visudo
+deployer ALL=(ALL) NOPASSWD: ALL
+
+
+apt-get -y install nginx
+service nginx start
+mkdir -p /var/www
+chown -R www-data:www-data /var/www
+chmod -R g+rws /var/www
+
+rm /etc/nginx/sites-enabled/default
+cd /etc/nginx/sites-available
+vi vegsochk.org
+
+server {
+  listen      80;
+  server_name vegsochk.org;
+  index       index.html;
+  root        /var/www/vegsochk.org;
+}
+
+cd /etc/nginx/sites-enabled
+ln -s ../sites-available/vegsochk.org
+
+service nginx reload
+```
+
+# Server Nodejs setup
+
+```
+curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
+nvm install 4.2.2
+nvm alias default 4.2.2
+```
+
+# Server git deploy setup
+
+```
+apt-get -y install git
+groupadd git
+mkdir -p /home/git/.ssh
+touch /home/git/.ssh/authorized_keys
+chmod 600 /home/git/.ssh/authorized_keys
+useradd -g git -G www-data -d /home/git -s /bin/bash git
+chown -R git:git /home/git
+```
+
+Login as git and configure the git folders
+
+```
+su - git
+echo 'export PATH=$PATH:/usr/sbin' > .profile
+mkdir -p /home/git/tmp/vegoc-hk
+mkdir -p /home/git/repos/vegoc-hk.git
+cd /home/git/repos/vegoc-hk.git
+git init --bare
+cd hooks
+touch post-receive
+vi post-receive
+```
+
+Update the post-receive file to the following
+
+```
+#!/bin/bash -l
+GIT_REPO=$HOME/repos/vegsoc.git
+TMP_GIT_CLONE=$HOME/tmp/vegsoc-hk
+PUBLIC_WWW=/var/www/vegsochk.org
+
+git clone $GIT_REPO $TMP_GIT_CLONE
+cd $TMP_GIT_CLONE
+npm install
+cp -a $TMP_GIT_CLONE/dist/. $PUBLIC_WWW
+rm -Rf $TMP_GIT_CLONE exit
+cd $PUBLIC_WWW forever start
+```
+
+Change the post-receive execution
+
+```
+chmod +x post-receive
+```
+
+add developer id_rsa.pub for future git push deployment:
+
+```
+vi /home/git/.ssh/authorized_keys
+```
+
+Local Machine
+
+```
+git remote add staging git@128.199.244.233:repos/vegsoc-hk.git
+git push staging master
+```
+
+# Update GoDaddy DNS record
+   editor-staging A 128.199.244.233
