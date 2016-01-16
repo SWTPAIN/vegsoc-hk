@@ -52,7 +52,7 @@ Create a digital ocean droplet got the new IP in digital ocean web console, e.g.
 ```
 ssh root@128.199.244.233
 apt-get update; apt-get upgrade
-sudo apt-get install build-essential libssl-dev
+apt-get install build-essential libssl-dev
 
 apt-get -y install nginx
 service nginx start
@@ -65,10 +65,34 @@ cd /etc/nginx/sites-available
 vi vegsochk.org
 
 server {
-  listen      80;
-  server_name vegsochk.org;
-  index       index.html;
-  root        /var/www/vegsochk.org;
+        listen 80;
+
+        server_name vegsochk.org;
+
+        access_log /var/log/nginx/vegsochk_access.log;
+        error_log /var/log/nginx/vegsochk_error.log;
+
+        root /var/www/public;
+
+        location ~ ^/keystone/(.+\.(?:jpg|jpeg|svg|eot|html|woff|woff2|ttf|png|gif|ico|css|js))$ {
+                alias /var/www/node_modules/keystone/public/$1;
+                expires 30d;
+                access_log off;
+        }
+
+        location ~*  \.(jpg|jpeg|svg|eot|html|woff|woff2|ttf|png|gif|ico|css|js)$ {
+                expires 30d;
+                access_log off;
+        }
+
+        location / {
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-NginX-Proxy true;
+                proxy_pass http://127.0.0.1:3000/;
+                proxy_redirect off;
+        }
 }
 
 cd /etc/nginx/sites-enabled
@@ -84,6 +108,7 @@ apt-get -y install git
 groupadd git
 visudo
 git ALL=(ALL) NOPASSWD: ALL
+
 mkdir -p /home/git/.ssh
 touch /home/git/.ssh/authorized_keys
 chmod 600 /home/git/.ssh/authorized_keys
@@ -95,9 +120,11 @@ chown -R git:git /home/git
 
 ```
 curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh
-nvm install 4.2.2
-nvm alias default 4.2.2
-npm install -g npm@3.5.3
+nvm install 4.1.0
+nvm alias default 4.1.0
+npm install -g npm@2.14.3
+npm install -g forever
+n=$(which node);n=${n%/bin/node}; chmod -R 755 $n/bin/*; sudo cp -r $n/{bin,lib,share} /usr/local
 ```
 
 Login as git and configure the git folders
@@ -118,16 +145,17 @@ Update the post-receive file to the following
 
 ```
 #!/bin/bash -l
-GIT_REPO=$HOME/repos/vegsoc.git
+GIT_REPO=$HOME/repos/vegsoc-hk.git
 TMP_GIT_CLONE=$HOME/tmp/vegsoc-hk
 PUBLIC_WWW=/var/www/vegsochk.org
 
 git clone $GIT_REPO $TMP_GIT_CLONE
 cd $TMP_GIT_CLONE
 npm install
-cp -a $TMP_GIT_CLONE/. $PUBLIC_WWW
-rm -Rf $TMP_GIT_CLONE exit
+cp -a $TMP_GIT_CLONE/ $PUBLIC_WWW
+rm -Rf $TMP_GIT_CLONE
 cd $PUBLIC_WWW forever start
+exit
 ```
 
 Change the post-receive execution
