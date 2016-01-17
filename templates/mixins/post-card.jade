@@ -8,16 +8,8 @@ mixin post-card(post)
 						section.card-body
 							p.datestamp
 								time(datetime=post._.publishedDate.format('YYYY-MM-DD'), itemprop='datePublished')=post._.publishedDate.format('MMMM D, YYYY')
-							p.card-tags
+							p.card-tags.post-byline
 								each category in post.categories
-									span= category.name
+									span.post-category= category.name
 							h2.card-heading= post.title
-				section.chart
-					.rating-bar-1.rating-small
-					.rating-bar-2.rating-large
-				footer.card-footer
-					ul.card-links
-						li
-							a(href='#') Preview
-						li
-							a(href='#') Download
+							p.card-heading!= post.content.brief
