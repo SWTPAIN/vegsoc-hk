@@ -152,14 +152,13 @@ PUBLIC_WWW=/var/www/vegsochk.org
 git clone $GIT_REPO $TMP_GIT_CLONE
 cd $TMP_GIT_CLONE
 npm install
-cp -a $TMP_GIT_CLONE/ $PUBLIC_WWW
+
+forever stop vegsochk
+rsync -rv --exclude=.git $TMP_GIT_CLONE/ $PUBLIC_WWW
 rm -Rf $TMP_GIT_CLONE
-
-
 cd $PUBLIC_WWW
-forever stop keystone.js
 cp /var/www/shared/vegsoc-hk/.env $PUBLIC_WWW/.env
-forever start -o logfile.out -e logerror.out keystone.js
+forever start -a -o logfile.out -e logerror.out --uid "vegsochk" keystone.js
 exit
 ```
 
