@@ -1,48 +1,65 @@
 //- SITE FOOTER
-footer.site-footer.site-footer--sticky
-	.row
-		.col-sm-4
-			.email-subscribe-form-wrapper
-				form(action="")
-					span.input-wrapper
-						input.balloon(type="text" placeholder="Email(Required)")
-						label(for="name") Email
-					span.input-wrapper
-						input.balloon(type="text" placeholder="Name")
-						label(for="name") Name
-					button.subscribe-button(type="submit") Subscribe
+footer.site-footer
+	.row.footer-upper-row
+		.container-fluid
+			.main-footer-upper-left
+				span
+					span.special-grey EMAIL US &nbsp;
+					a(href="mailto:someone@vegsochk.org") someone@vegsochk.org
+				
 
-		.col-sm-4
-			.donation-form-wrapper
-				p Our donation will go to work for promoting veganism
-				form(action="")
-					button.donate-button(type="submit") Donate
+			.main-footer-upper-middle
+				ul.footer-social-navigaiton
+					li: a.fa.fa-facebook(href="https://www.facebook.com/vegsochk")
+					li: a.fa.fa-youtube(href="https://www.youtube.com/vegsochk")
+					li: a.fa.fa-instagram(href="https://www.instagram.com/vegsochk")
 
-		.col-sm-4
-			.row
-				.col-xs-4
-					h5.footer-heading ABOUT
-					ul
-						li: a(href='/article/posts') Article
-						li: a(href='/press') Press
-						li: a(href='/press') Privacy Policy
-						li: a(href='/press') Terms of Use
-				.col-xs-4
-					h5.footer-heading SUPPORT
-					ul
-						li: a(href='/faq') FAQs
-						li: a(href='mailto:someone@vegsochk.org') Contact us
-						li: a(href='/download-center') Download Center
-						li: a(href='/volunterr') Volunteer
-						li: a(href='/job') Job
-				.col-xs-4
-					h5.footer-heading SHOP
-					ul
-						li: a(href='/')= Clothing & Accessories
-						li: a(href='/')= Food
-						li: a(href='/')= Book & DVDS
-						li: a(href='/')= Home, Personal & Beauty
-						
-					
-	.row.footer-copyright
-		p Copyright &copy; 2016 VegsocHK. Handcrafted by <a href='https://github.com/SWTPAIN', target='_blank'>KaFai C</a>.
+			.main-footer-upper-right
+				span.copyright &copy; 2016 VegsocHK. Handcrafted by <a href='https://github.com/SWTPAIN', target='_blank'>KaFai C</a>.
+					span.sep •
+					span.special-grey All Rights Reserved
+
+	.row.footer-lower-row
+		.container-fluid
+			.main-footer-lower-left
+				.email-subscribe-form-wrapper
+					form(action="")
+						span.input-wrapper
+							input.balloon(type="text" placeholder="Email(Required)")
+							label(for="name") Email
+						span.input-wrapper
+							input.balloon(type="text" placeholder="Name")
+							label(for="name") Name
+						button.subscribe-button(type="submit") Subscribe
+
+			.main-footer-lower-middle.footer-middle-col
+				.donation-form-wrapper
+					h3 Our donation will go to work for promoting veganism
+					form(action="")
+						button.donate-button(type="submit") Donate
+
+			.main-footer-lower-right
+				.row
+					.col-xs-4
+						h5.footer-heading ABOUT
+						ul
+							li: a(href='/article/posts') Article
+							li: a(href='/press') Press
+							li: a(href='/press') Privacy Policy
+							li: a(href='/press') Terms of Use
+					.col-xs-4
+						h5.footer-heading SUPPORT
+						ul
+							li: a(href='/faq') FAQs
+							li: a(href='mailto:someone@vegsochk.org') Contact us
+							li: a(href='/download-center') Download Center
+							li: a(href='/volunterr') Volunteer
+							li: a(href='/job') Job
+					.col-xs-4
+						h5.footer-heading SHOP(comming coon)
+						ul
+							li: a(href='/') Clothing & Accessories
+							li: a(href='/') Food
+							li: a(href='/') Book & DVDS
+							li: a(href='/') Home, Personal & Beauty
+				

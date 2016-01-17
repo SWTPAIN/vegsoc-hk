@@ -13,7 +13,15 @@ body {
 	font-weight: @font-weight-base;
 }
 
+.special-grey {
+	color: @special-grey
+}
 
+
+// overriding bootstrap
+.row {
+	margin: 0;
+}
 // Containers
 // ------------------------------
 .container-xs,
@@ -121,7 +129,6 @@ body {
 .site-footer {
 	background-color: @footer-default-bg;
 	color: @gray-light;
-	padding: 3em 0 0;
 	font-size: @font-size-base * 1.1;
 	position: relative;
 
@@ -137,6 +144,85 @@ body {
 	a {
 		color: @gray;
 	}
+}
+
+.footer-upper-row {
+	border-top: 1px solid fade(black, 10%);
+	// margin: 0;
+	text-align: center;
+	* {
+		font-size: 12px;
+	}
+
+	width: 100%;
+	background: #000;
+	color: #fff;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+
+	.sep {
+		margin: 0 5px;
+	}
+
+	.main-footer-upper-left {
+		width: 32%;
+		display: table-cell;
+		vertical-align: middle;
+		font-size: 1.2rem;
+		line-height: 2;
+	}
+
+	.main-footer-upper-middle {
+		width: 36%;
+		display: table-cell;
+		vertical-align: middle;
+
+		.footer-social-navigaiton {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			text-align: center;
+
+			li {
+		    display: inline;
+		    list-style: none;
+		    margin: 0;
+		    padding: 0 1rem;
+
+				a {
+					font-size: 20px;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	.main-footer-upper-right {
+		width: 32%;
+		display: table-cell;
+		vertical-align: middle;
+		font-size: 1.2rem;
+		line-height: 2;
+	}
+
+	@media screen and (max-width: 60em) {
+		.main-footer-upper-left,
+		.main-footer-upper-middle,
+		.main-footer-upper-right {
+			text-align: center;
+			display: block;
+			width: 100%;
+			padding: 0.5em 5%;
+			border: 0;
+			border-bottom: 1px solid #000;
+		}
+	}
+
+}
+
+.footer-lower-row {
+	// margin: 0;
 
 	.email-subscribe-form-wrapper {
 
@@ -152,14 +238,13 @@ body {
 
 		.input-wrapper {
 			position: relative;
-	    display: inline-block;
+	    display: block;
 		}
 
 		input {
 			background-color: #fff;
 			color: rgba(50, 50, 50, 1);
-
-			display: inline-block;
+			display: block;
 		  width: 215px;
 		  padding: 10px 0 10px 15px;
 		  font-weight: 400;
@@ -242,46 +327,72 @@ body {
 		  border-radius: 3px;
 		}
 	}
-}
-.footer-copyright {
-	margin-top: 2em;
-	padding: 2em @page-padding;
-	border-top: 1px solid fade(black, 10%);
-	text-align: center;
-}
 
+	.footer-middle-col {
+		border-left: 1px solid #fff;
+		border-right: 1px solid #fff;
+	}
 
+	.main-footer-lower-left {
+		width: 28%;
+		display: table-cell;
+		vertical-align: top;
+		padding: 2.5em 2.5em 2.5em 0;
+	}
+
+	.main-footer-lower-middle {
+    width: 44%;
+    display: table-cell;
+    vertical-align: top;
+    padding: 2.5em;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+    text-align: center;
+	}
+
+	.main-footer-lower-right {
+		width: 28%;
+    display: table-cell;
+    vertical-align: top;
+    padding: 2.5em 0 2.5em 2.5em;
+	}
+
+	@media screen and (max-width: 60em) {
+		.email-subscribe-form-wrapper {
+			.subscribe-button {
+				width: 100%;
+			}
+
+			.input-wrapper {
+			}
+
+			input {
+				width: 100%;
+			}
+		}
+
+		.donation-form-wrapper {
+
+			.donate-button {
+				width: 100%;
+			}
+		}
+
+		.main-footer-lower-left,
+		.main-footer-lower-middle,
+		.main-footer-lower-right {
+			text-align: center;
+			display: block;
+			width: 100%;
+			padding: 3em 5%;
+			border: 0;
+			border-bottom: 1px solid #000;
+		}
+	}
+}
 // Sticky footer (only on desktop)
 // ------------------------------
 @footerHeight: 320px;
-.site-wrapper.has-sticky-footer {
-	position: relative;
-	padding-bottom: @footerHeight;
-	min-height: 100%;
-	background: @body-bg;
-	@media (max-width: @screen-xs-max) {
-		padding-bottom: 0;
-	}
-}
-
-.site-footer.site-footer--sticky {
-	position: absolute;
-	bottom: 0;
-	display: block;
-	width: 100%;
-	height: @footerHeight;
-	@media (max-width: @screen-xs-max) {
-		position: relative;
-		bottom: auto;
-		height: auto;
-	}
-
-	.email-subscribe-form-wrapper {
-
-	}
-}
-
-
 
 
 // Links
