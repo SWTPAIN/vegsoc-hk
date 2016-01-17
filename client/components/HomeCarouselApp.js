@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ApiClient from '../helpers/ApiClient';
-import _ from 'underscore';
+import _ from 'lodash';
 import { Carousel } from 'react-responsive-carousel';
 
 const apiClient = new ApiClient();
@@ -10,7 +10,7 @@ export default class HomeCarouselApp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: [],
+      featureSlides: [],
     };
     apiClient
       .get({
@@ -19,13 +19,13 @@ export default class HomeCarouselApp extends Component {
       .then(result => {
         console.log(result);
         this.setState({
-          posts: result.posts,
+          featureSlides: result.featureSlides,
         });
       }, err => {
-        console.log('Error: get posts: ', err);
+        console.log('Error: get featureSlides: ', err);
       })
       .catch(err => {
-        console.log('Error: get posts: ', err);
+        console.log('Error: get featureSlides: ', err);
       });
   }
 
@@ -33,20 +33,29 @@ export default class HomeCarouselApp extends Component {
     return (
       <Carousel
         type="slider"
+        onClickItem={this.handleSlideOnClick.bind(this)}
         showArrows
         showStatus={false}
         showThumbs={false}>
         {
-          _.map(this.state.posts, post => (
-            <div key={post._id}>
-              <img src={(post.image && post.image.secure_url) || 'https://veganrush.files.wordpress.com/2013/11/vegan-model-strips-down-for-activism.jpg'} />
-              <h1 className="legend">{post.title}</h1>
-              <p className="legend">{post.content.brief}</p>
+          _.map(this.state.featureSlides, slide => (
+            <div
+              style={{cursor: 'pointer'}}
+              key={slide._id}>
+              <img src={(slide.image && slide.image.secure_url) || 'https://veganrush.files.wordpress.com/2013/11/vegan-model-strips-down-for-activism.jpg'} />
+              <div
+                dangerouslySetInnerHTML={{__html: slide.description}}
+                className="legend"></div>
             </div>
           ))
         }
       </Carousel>
     );
+  }
+
+  handleSlideOnClick(slideIndex) {
+    const slide = this.state.featureSlides[slideIndex];
+    window.location = slide.href || '/article/post/' + slide.post.slug;
   }
 }
 

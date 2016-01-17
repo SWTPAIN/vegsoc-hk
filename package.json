@@ -48,8 +48,8 @@
     "npm": "~2.14.3"
   },
   "scripts": {
+    "dev": "nodemon keystone.js",
     "start": "node keystone.js",
-    "production-start": "node -r dotenv/config keystone.js dotenv_config_path=/var/www/shared/vegsoc-hk/.env",
     "print-graphql-schema": "babel-node ./graphql/scripts/printSchema.js",
     "lint": "eslint ."
   },

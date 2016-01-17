@@ -1,18 +1,18 @@
 var keystone = require('keystone');
-var Post = keystone.list('Post');
+var FeatureSlide = keystone.list('FeatureSlide');
 
 exports = module.exports = function(req, res) {
 	const rtn = {
-		posts: [],
+		featureSlides: [],
 	};
 
-	var q = Post.model.find().where('state', 'published').sort('-publishedDate').populate('author categories');
+	var q = FeatureSlide.model.find().where('state', 'published').sort('-publishedDate').populate('post');
 
 	q.exec((err, results) => {
 		if (err) {
 			rtn.err = err;
 		}
-		rtn.posts = results;
+		rtn.featureSlides = results;
 		res.json(rtn);
 	});
 };

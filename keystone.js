@@ -1,5 +1,5 @@
 // Note it's checking the regex against an absoloute path
-require('babel-register')({ only: /\/graphql\/.*/ });
+require('babel-register');
 
 // Load .env for development environments
 require('dotenv').load();
@@ -85,10 +85,11 @@ keystone.set('email locals', {
 });
 
 keystone.set('nav', {
-	'meetups': ['meetups', 'talks', 'rsvps'],
-	'members': ['users', 'organisations'],
+	// 'meetups': ['meetups', 'talks', 'rsvps'],
+	// 'members': ['users', 'organisations'],
 	'posts': ['posts', 'post-categories', 'post-comments'],
-	'links': ['links', 'link-tags', 'link-comments'],
+	'feature-slides': ['feature-slides'],
+	// 'links': ['links', 'link-tags', 'link-comments'],
 });
 
 keystone.start();
