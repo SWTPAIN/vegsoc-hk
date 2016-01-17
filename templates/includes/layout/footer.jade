@@ -1,29 +1,48 @@
 //- SITE FOOTER
-footer.site-footer.site-footer--sticky: .container
+footer.site-footer.site-footer--sticky
 	.row
 		.col-sm-4
-			h5.footer-heading About
-			p ba babaaaaaaaaaa dasadsa dsadsad asdsadsadcx
-			ul.list-inline
-				li: a(href='/about') More about VegsocHK
-				li: a(href='mailto:craig.sharkie+sydjs@gmail.com') Contact us
+			.email-subscribe-form-wrapper
+				form(action="")
+					span.input-wrapper
+						input.balloon(type="text" placeholder="Email(Required)")
+						label(for="name") Email
+					span.input-wrapper
+						input.balloon(type="text" placeholder="Name")
+						label(for="name") Name
+					button.subscribe-button(type="submit") Subscribe
 
-		.col-sm-8
+		.col-sm-4
+			.donation-form-wrapper
+				p Our donation will go to work for promoting veganism
+				form(action="")
+					button.donate-button(type="submit") Donate
+
+		.col-sm-4
 			.row
 				.col-xs-4
-					h5.footer-heading Members
+					h5.footer-heading ABOUT
 					ul
-						li: a(href='/members') Members
-						if !user
-							li: a(href='/join').js-auth-trigger Become a Member
+						li: a(href='/article/posts') Article
+						li: a(href='/press') Press
+						li: a(href='/press') Privacy Policy
+						li: a(href='/press') Terms of Use
 				.col-xs-4
-					h5.footer-heading Resources
+					h5.footer-heading SUPPORT
 					ul
-						li: a(href='/articles') Articles
+						li: a(href='/faq') FAQs
+						li: a(href='mailto:someone@vegsochk.org') Contact us
 						li: a(href='/download-center') Download Center
+						li: a(href='/volunterr') Volunteer
+						li: a(href='/job') Job
 				.col-xs-4
-					h5.footer-heading Sponsors
-					ul: each sponsor in sponsors
-						li: a(href='/organisations#' + sponsor.id)= sponsor.name
+					h5.footer-heading SHOP
+					ul
+						li: a(href='/')= Clothing & Accessories
+						li: a(href='/')= Food
+						li: a(href='/')= Book & DVDS
+						li: a(href='/')= Home, Personal & Beauty
+						
+					
 	.row.footer-copyright
 		p Copyright &copy; 2016 VegsocHK. Handcrafted by <a href='https://github.com/SWTPAIN', target='_blank'>KaFai C</a>.
