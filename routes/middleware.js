@@ -2,22 +2,20 @@ var _ = require('underscore');
 var querystring = require('querystring');
 var keystone = require('keystone');
 
-
 /**
 	Initialises the standard view locals
 */
 
 exports.initLocals = function(req, res, next) {
-
 	var locals = res.locals;
 
 	locals.navLinks = [
 		{ label: 'Home',		key: 'home',		href: '/' },
 		{ label: 'About',		key: 'about',		href: '/about' },
 		{ label: 'Animal Rights',		key: 'animal-rights',		href: '/animal-rights' },
-		{ label: 'Meetups',		key: 'meetups',		href: '/meetups' },
+		// { label: 'Meetups',		key: 'meetups',		href: '/meetups' },
 		{ label: 'Articles',		key: 'article',		href: '/article' },
-		{ label: 'Download Center',		key: 'download-center',		href: '/download-center' }
+		{ label: 'Download Center',		key: 'download-center',		href: '/download-center' },
 	];
 
 	locals.user = req.user;
@@ -31,7 +29,7 @@ exports.initLocals = function(req, res, next) {
 
 	locals.qs_set = qs_set(req, res);
 
-	if (req.cookies.target && req.cookies.target == locals.page.path) res.clearCookie('target');
+	if (req.cookies.target && req.cookies.target === locals.page.path) res.clearCookie('target');
 
 	var bowser = require('../lib/node-bowser').detect(req);
 
@@ -40,8 +38,8 @@ exports.initLocals = function(req, res, next) {
 		ios: bowser.ios,
 		iphone: bowser.iphone,
 		ipad: bowser.ipad,
-		android: bowser.android
-	}
+		android: bowser.android,
+	};
 
 	next();
 
