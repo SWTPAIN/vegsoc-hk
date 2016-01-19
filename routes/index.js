@@ -106,6 +106,7 @@ exports = module.exports = function (app) {
 	app.all('/api/stats', routes.api.stats);
 	app.all('/api/meetup/:id', routes.api.meetup);
 	app.all('/api/featureSlides', routes.api.featureSlides);
+	app.post('/api/subscribers', routes.api.subscribers);
 
 	// API - App
 	app.all('/api/app/status', routes.api.app.status);

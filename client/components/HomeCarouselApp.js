@@ -30,7 +30,9 @@ export default class HomeCarouselApp extends Component {
   }
 
   render() {
+    const featureSlides = this.state.featureSlides;
     return (
+      featureSlides.length > 0 &&
       <Carousel
         type="slider"
         onClickItem={this.handleSlideOnClick.bind(this)}
@@ -38,7 +40,7 @@ export default class HomeCarouselApp extends Component {
         showStatus={false}
         showThumbs={false}>
         {
-          _.map(this.state.featureSlides, slide => (
+          _.map(featureSlides, slide => (
             <div
               style={{cursor: 'pointer'}}
               key={slide._id}>
