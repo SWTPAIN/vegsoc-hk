@@ -12,4 +12,4 @@ mixin post-card(post)
 								each category in post.categories
 									span.post-category= category.name
 							h2.card-heading= post.title
-							p.card-heading!= post.content.brief
+							!= post.content.brief
