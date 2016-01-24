@@ -4,6 +4,7 @@
 *
 **/
 @animal-right-bg: #efede9;
+@border-color: #bdb4a5;
 
 .sitesection-animal-rights {
 	.site-body {
@@ -11,11 +12,24 @@
 		padding-left: 0;
 		padding-right: 0;
 	}
+
+  .site-footer {
+    z-index: 1;
+  }
 }
 
 
 .animal-rights {
   background-color: @animal-right-bg;
+
+  .category {
+    color: #8e7d60;
+    display: block;
+    text-transform: uppercase;
+    padding-top: 5px;
+    font-size: 11px;
+    font-family: Theinhardt-Bold;
+  }
 
 	.animal-rights-about-header {
     position: relative;
@@ -23,6 +37,7 @@
     height: 100%;
     overflow: hidden;
     height: 800px;
+    z-index: 0;
 
     .animal-rights-about-header-cover-image {
       width: auto;
@@ -85,13 +100,6 @@
       bottom: 0;
 
       .category {
-        color: #8e7d60;
-        display: block;
-        text-transform: uppercase;
-        padding-top: 5px;
-        font-size: 11px;
-        font-family: Theinhardt-Bold;
-
         border-top: 1px solid #968870;
       }
 
@@ -129,6 +137,145 @@
         letter-spacing: -.02em;
       }
     }
+
+    .section-header {
+      color: #FFF;
+      font-family: Theinhardt-Bold;
+      font-size: 110px;
+      letter-spacing: -.01em;
+      line-height: 1em;
+
+      .top-container {
+        width: 100%;
+        height: 150px;
+        margin-top: 20px;
+        display: inline-block;
+
+        .top-bordered {
+          border-top: 1px solid @border-color;
+        }
+      }
+
+      .mid-container {
+        width: 100%;
+        margin-bottom: 45px;
+        display: inline-block;
+        position: relative;
+
+        h2 {
+          color: #16232f;
+          font-size: 25px;
+          font-family: Theinhardt-Bold;
+          letter-spacing: -.04em;
+          padding-right: 0;
+          line-height: 1.3em;
+        }
+
+        p {
+          padding-right: 0;
+          font-family: 'Chronicle DeckCond A','Chronicle DeckCond B';
+          font-size: 22px;
+          color: #978871;
+          line-height: 1.2em;
+        }
+      }
+
+      .bottom-container {
+        width: 100%;
+        height: 34px;
+        display: inline-block;
+        line-height: 0;
+
+        span {
+          width: 100%;
+          display: inline-block;
+        }
+
+        .top-bordered {
+          border-top: 1px solid @border-color;
+
+          &.emphased {
+            border-top: 3px solid @border-color;
+          }
+        }
+      }
+    }
   }
 
+
+  .text-block {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    // > * {
+      background-color: @animal-right-bg;
+      z-index: 1;
+    // }
+
+    .top-bordered {
+      border-top: 1px solid @border-color;
+
+      &.emphased {
+        border-top: 3px solid @border-color;
+      }
+    }
+
+    .bottom-bordered {
+      border-bottom: 1px solid @border-color;
+
+      &.emphased {
+        border-bottom: 3px solid @border-color;
+      }
+    }
+
+    .col-xs-3 {
+      padding-top: 20px;
+    }
+
+    strong {
+      font-family: Theinhardt-Bold;
+      font-size: 13px;
+      line-height: 1.3em;
+      font-weight: 400;
+      color: #454545;
+      margin-bottom: 6px;
+      display: inline-block;
+      letter-spacing: -.05em;
+      font-style: italic;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-family: Theinhardt-Regular;
+      font-size: 14px;
+      line-height: 1.35em;
+      color: #454545;
+    }
+
+    .quote-container {
+      p {
+        font-size: 22px;
+        color: #978871;
+        font-family: 'Chronicle DeckCond A','Chronicle DeckCond B';
+        line-height: 1.2em;
+        letter-spacing: .013em;
+        font-weight: 400;
+        padding-right: 20px;
+        margin-top: 10px;
+        margin-bottom: 30px;
+      }
+    }
+
+  }
+
+  .fluid-image {
+    width: 100%;
+    line-height: 0;
+    max-height: 1040px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }
