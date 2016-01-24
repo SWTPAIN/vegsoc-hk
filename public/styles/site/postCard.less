@@ -27,7 +27,6 @@
 }
 
 .card-main {
-  cursor: pointer;
   a {
     text-decoration: none;
     color: #555;
@@ -39,11 +38,27 @@
   }
 }
 
+.card-image-holder {
+  height: @card-image-height;
+  overflow: hidden;
+}
+
 .card-image {
   background-size: cover;
   border-radius: 2px 2px 0 0;
-  height: @card-image-height;
-  max-width: 100%;
+  // height: @card-image-height;
+  width: 100%;
+  height: 100%;
+
+  -webkit-filter: grayscale(0) blur(0);
+	filter: grayscale(0) blur(0);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+
+  &:hover {
+    -webkit-filter: grayscale(100%) blur(3px);
+  	filter: grayscale(100%) blur(3px);
+  }
 }
 
 .datestamp {
