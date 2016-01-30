@@ -27,7 +27,6 @@ block content
 		.row.post-content
 			.col-md-2.col-sm-2
 				.left-sidebar
-					| I am the left side.
 			.col-md-7.col-sm-10
 				.post
 					article.full-post
@@ -70,32 +69,18 @@ block content
 							h4.latest-post-header
 								| Latest Articles						
 							ul.article-list
-								li
-									a(href="http://www.wired.com/2016/01/microsoft-continues-to-obscure-its-real-cloud-revenue/" class="clearfix pad" itemprop="url" content="http://www.wired.com/2016/01/microsoft-continues-to-obscure-its-real-cloud-revenue/")
-										.row
-											.col-xs-4.latest-post-thumnail-wrapper
-												img(src="http://www.wired.com/wp-content/uploads/2014/12/microsoft1-150x150-e1420486599205.jpg")
-											.col-xs-8
-												span.latest-post-category
-													| Cloud Computing
-												h5.latest-post-title
-													| Microsoft Continues to Obscure Its Real Cloud Revenue
-												time
-													| 13 hours
+								each post in data.latestPosts
 									li
-										a(href="http://www.wired.com/2016/01/microsoft-continues-to-obscure-its-real-cloud-revenue/" class="clearfix pad" itemprop="url" content="http://www.wired.com/2016/01/microsoft-continues-to-obscure-its-real-cloud-revenue/")
+										a(href='/article/post/' + post.slug, itemprop='url')
 											.row
 												.col-xs-4.latest-post-thumnail-wrapper
-													img(src="http://www.wired.com/wp-content/uploads/2014/12/microsoft1-150x150-e1420486599205.jpg")
+													img(src=post._.image.thumbnail(100, 100, {crop: 'fill'}))
 												.col-xs-8
 													span.latest-post-category
-														| Cloud Computing
+														= post.categories[0].name
 													h5.latest-post-title
-														| Microsoft Continues to Obscure Its Real Cloud Revenue
-													time
-														| 13 hours
-
-
+														= post.title
+													time(datetime=post._.publishedDate.format('YYYY-MM-DD'), itemprop='datePublished')=post._.publishedDate.format('MMMM D, YYYY')
 block js
 	script(src='/js/views/post.js')
 	//- script(src='/js/common/share.js')

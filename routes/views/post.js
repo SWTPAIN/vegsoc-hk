@@ -4,46 +4,41 @@ var Post = keystone.list('Post');
 var PostComment = keystone.list('PostComment');
 
 exports = module.exports = function(req, res) {
-
-	var view = new keystone.View(req, res),
-		locals = res.locals;
+	const view = new keystone.View(req, res);
+	const locals = res.locals;
 
 	// Init locals
 	locals.section = 'post';
 	locals.filters = {
-		post: req.params.post
+		post: req.params.post,
 	};
 
 	view.on('init', function(next) {
-
 		Post.model.findOne()
 			.where('slug', locals.filters.post)
 			.populate('author categories')
 			.exec(function(err, post) {
-
 				if (err) return res.err(err);
 				if (!post) return res.notfound('Post not found');
 
 				// Allow admins or the author to see draft posts
-				if (post.state == 'published' || (req.user && req.user.isAdmin) || (req.user && post.author && (req.user.id == post.author.id))) {
+				if (post.state === 'published' || (req.user && req.user.isAdmin) || (req.user && post.author && (req.user.id === post.author.id))) {
 					locals.post = post;
 					locals.post.populateRelated('comments[author]', next);
 					locals.page.title = post.title + ' - Article - VegsocHK';
 				} else {
 					return res.notfound('Post not found');
 				}
-
 			});
-
 	});
 
 	// Load recent posts
-	view.query('data.posts',
+	view.query('data.latestPosts',
 		Post.model.find()
 			.where('state', 'published')
 			.sort('-publishedDate')
-			.populate('author')
-			.limit('4')
+			.populate('categories')
+			.limit('2')
 	);
 
 	view.on('post', { action: 'create-comment' }, function(next) {
