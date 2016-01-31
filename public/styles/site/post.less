@@ -28,31 +28,102 @@
 		padding-top: 40px;
 		padding-bottom: 40px;
 
-		.post-basic-info-list {
-			padding: 0;
-			margin-bottom: 25px;
-			li {
-				display: inline-block;
-				margin-right: 8px;
-				color: rgba(0,0,0,0.6);
-		    transition: all .4s cubic-bezier(.33,.66,.66,1)
+		.intro {
+			margin-bottom: -10px;
+			.title {
+				line-height: 60px;
+				font-size: 60px;
+
 			}
 
-			.category-link {
-				li {
-			    font-weight: 100;
-			    text-transform: uppercase;
-					&:hover {
-						text-decoration: none;
-						text-shadow: 0 0 1px rgba(0,0,0, 1);
-						color: rgba(0,0,0, 1);
+			a {
+				margin: 0;
+				padding: 0;
+				font-size: 100%;
+				vertical-align: baseline;
+				background: transparent;
+				text-decoration: none;
+				color: #777;
+
+				:hover {
+					color: #777;
+					font-weight: 900;
+				}
+			}
+
+			.byline {
+				font-size: 17px;
+				line-height: 25px;
+		    font-family: "futura-pt", sans-serif;
+		    color: #444;
+		    letter-spacing: 2px;
+
+				> * {
+					display: inline-block;
+				}
+
+				.broad-topic {
+					font-size: 17px;
+					display: inline;
+					text-transform: uppercase;
+			    margin-right: 0;
+			    color: #888;
+
+					font-size: 17px;
+					line-height: 25px;
+			    font-family: "futura-pt", sans-serif;
+			    color: #444;
+			    letter-spacing: 2px;
+
+					&:after {
+						content: '/';
+						margin-left: 4px;
+						margin-right: 4px;
 					}
 				}
-				&:hover {
-					text-decoration: none;
+
+				.date {
+					&:after {
+						content: '/';
+						margin-left: 4px;
+						margin-right: 4px;
+					}
+				}
+
+				.writer {
+					font-size: 14px;
+					a {
+						font-size: 17px;
+
+					}
 				}
 			}
 		}
+		// .post-basic-info-list {
+		// 	padding: 0;
+		// 	margin-bottom: 25px;
+		// 	li {
+		// 		display: inline-block;
+		// 		margin-right: 8px;
+		// 		color: rgba(0,0,0,0.6);
+		//     transition: all .4s cubic-bezier(.33,.66,.66,1)
+		// 	}
+		//
+		// 	.category-link {
+		// 		li {
+		// 	    font-weight: 100;
+		// 	    text-transform: uppercase;
+		// 			&:hover {
+		// 				text-decoration: none;
+		// 				text-shadow: 0 0 1px rgba(0,0,0, 1);
+		// 				color: rgba(0,0,0, 1);
+		// 			}
+		// 		}
+		// 		&:hover {
+		// 			text-decoration: none;
+		// 		}
+		// 	}
+		// }
 
 		.post-image-wrapper {
 			max-width: 100%;
@@ -100,6 +171,10 @@
 
 		li {
 			border-bottom: 1px solid rgba(0,0,0,0.2);
+			transition: background 0.5s linear;
+			&:hover {
+				background: rgba(220, 220, 220, 0.9);
+			}
 			a {
 				padding: 6px 4px;
 				display: block;

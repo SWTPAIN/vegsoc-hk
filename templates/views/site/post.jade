@@ -3,25 +3,21 @@ extends ../../layouts/default
 block content
 	.post-container
 		.row.post-header
-			ul.post-basic-info-list
-				li
-					span
-						= post.author.name.full
-				li
-					span
-						| Science
-				if post.categories && post.categories.length
-					each cat in post.categories
-						a.category-link(href='/article/' + cat.key)
-							li
-								span
+			.intro
+				h1.title= post.title
+				.byline
+					h2.broad-topic
+						if post.categories && post.categories.length
+							each cat in post.categories
+								a.category-link(href='/article/' + cat.key)
 									= cat.name
-				li.meta-pubdate
-					time
+					span.date
 						if post.publishedDate
 							= post._.publishedDate.format('MMMM D, YYYY')
-			h1.post-title= post.title
-				
+					span.writer
+						| by 
+						a= post.author.name.full
+
 			figure.post-image-wrapper
 				.post-image.mv-3: img(src=post.image.secure_url).img-responsive.img-thumbnail
 		.row.post-content
