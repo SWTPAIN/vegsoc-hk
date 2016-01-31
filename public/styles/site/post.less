@@ -31,9 +31,13 @@
 		.intro {
 			margin-bottom: -10px;
 			.title {
-				line-height: 60px;
-				font-size: 60px;
+				line-height: 50px;
+				font-size: 50px;
 
+				@media (max-width: @screen-sm) {
+					font-size: 40px;
+					line-height: 40px;
+				}
 			}
 
 			a {
@@ -52,28 +56,24 @@
 			}
 
 			.byline {
-				font-size: 17px;
-				line-height: 25px;
-		    font-family: "futura-pt", sans-serif;
-		    color: #444;
-		    letter-spacing: 2px;
-
 				> * {
 					display: inline-block;
-				}
-
-				.broad-topic {
-					font-size: 17px;
-					display: inline;
-					text-transform: uppercase;
-			    margin-right: 0;
-			    color: #888;
-
 					font-size: 17px;
 					line-height: 25px;
 			    font-family: "futura-pt", sans-serif;
 			    color: #444;
-			    letter-spacing: 2px;
+			    letter-spacing: 1px;
+					@media (max-width: @screen-sm) {
+						font-size: 14px;
+					}
+				}
+
+				.broad-topic {
+					// font-size: 17px;
+					display: inline;
+					text-transform: uppercase;
+			    margin-right: 0;
+			    color: #888;
 
 					&:after {
 						content: '/';
@@ -94,7 +94,13 @@
 					font-size: 14px;
 					a {
 						font-size: 17px;
+					}
 
+					@media (max-width: @screen-sm) {
+						font-size: 12px;
+						a {
+							font-size: 14px;
+						}
 					}
 				}
 			}
