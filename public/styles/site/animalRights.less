@@ -44,11 +44,11 @@
     z-index: 0;
 
     .animal-rights-about-header-cover-image {
-      width: 100%;
+      width: auto;
       height: 100%;
       position: fixed;
       z-index: 0;
-      margin-top: -200px;
+      margin-top: -140px;
     }
 
     .top-container {
@@ -60,12 +60,16 @@
 
       p {
         border-top: 2px solid #968870;
-        margin-top: 219px;
+        margin-top: 160px;
         padding-top: 12px;
         color: #FFF;
         font-family: 'Chronicle DeckCond A','Chronicle DeckCond B';
         font-size: 15px;
         font-weight: 700;
+
+				@media (max-width: @screen-sm) {
+					margin-top: 20px;
+				}
       }
     }
 
@@ -74,7 +78,7 @@
       height: 245px;
       position: absolute;
       z-index: 1;
-      bottom: 27px;
+      bottom: 80px;
 
       .down-arrow {
         border-top: 1px solid #968870;
