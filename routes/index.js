@@ -69,9 +69,6 @@ exports = module.exports = function (app) {
 	app.get('/meetups', routes.views.meetups);
 	app.get('/meetups/:meetup', routes.views.meetup);
 	app.get('/organisations', routes.views.organisations);
-	app.get('/links', routes.views.links);
-	app.get('/links/:tag?', routes.views.links);
-	app.all('/links/link/:link', routes.views.link);
 	app.get('/article/:category?', routes.views.article);
 	app.all('/article/post/:post', routes.views.post);
 	app.get('/about', routes.views.about);
@@ -95,7 +92,6 @@ exports = module.exports = function (app) {
 	app.all('/me*', middleware.requireUser);
 	app.all('/me', routes.views.me);
 	app.all('/me/create/post', routes.views.createPost);
-	app.all('/me/create/link', routes.views.createLink);
 
 	// Tools
 	app.all('/notification-center', routes.views.tools['notification-center']);

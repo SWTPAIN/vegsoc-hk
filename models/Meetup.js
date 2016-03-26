@@ -10,7 +10,7 @@ var Types = keystone.Field.Types;
 
 var Meetup = new keystone.List('Meetup', {
 	track: true,
-	autokey: { path: 'key', from: 'name', unique: true }
+	autokey: { path: 'key', from: 'name', unique: true },
 });
 
 Meetup.add({
@@ -32,17 +32,11 @@ Meetup.add({
 	legacy: { type: Boolean, noedit: true, collapse: true },
 });
 
-
-
-
 // Relationships
 // ------------------------------
 
 Meetup.relationship({ ref: 'Talk', refPath: 'meetup', path: 'talks' });
 Meetup.relationship({ ref: 'RSVP', refPath: 'meetup', path: 'rsvps' });
-
-
-
 
 // Virtuals
 // ------------------------------
@@ -59,9 +53,6 @@ Meetup.schema.virtual('remainingRSVPs').get(function() {
 Meetup.schema.virtual('rsvpsAvailable').get(function() {
 	return (this.remainingRSVPs > 0);
 });
-
-
-
 
 // Pre Save
 // ------------------------------
@@ -87,9 +78,6 @@ Meetup.schema.pre('save', function(next) {
 	next();
 });
 
-
-
-
 // Methods
 // ------------------------------
 
@@ -103,7 +91,7 @@ Meetup.schema.methods.refreshRSVPs = function(callback) {
 			meetup.totalRSVPs = count;
 			meetup.save(callback);
 		});
-}
+};
 
 Meetup.schema.methods.notifyAttendees = function(req, res, next) {
 	var meetup = this;
@@ -120,20 +108,19 @@ Meetup.schema.methods.notifyAttendees = function(req, res, next) {
 					to: attendee.email,
 					from: {
 						name: 'VegsocHK',
-						email: 'hello@vegsochk.com'
-					}
+						email: 'hello@vegsochk.com',
+					},
 				}, next);
 			});
 		}
 	});
-}
+};
 
 Meetup.schema.set('toJSON', {
 	transform: function(doc, rtn, options) {
 		return _.pick(doc, '_id', 'name', 'startDate', 'endDate', 'place', 'map', 'description', 'rsvpsAvailable', 'remainingRSVPs');
-	}
+	},
 });
-
 
 /**
  * Registration

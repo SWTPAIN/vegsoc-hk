@@ -24,7 +24,7 @@ exports.initLocals = function(req, res, next) {
 
 	locals.page = {
 		title: 'VegsocHK',
-		path: req.url.split("?")[0] // strip the query - handy for redirecting back to the page
+		path: req.url.split('?')[0], // strip the query - handy for redirecting back to the page
 	};
 
 	locals.qs_set = qs_set(req, res);
@@ -42,9 +42,7 @@ exports.initLocals = function(req, res, next) {
 	};
 
 	next();
-
 };
-
 
 /**
 	Make sponsors universally available
@@ -57,8 +55,7 @@ exports.loadSponsors = function(req, res, next) {
 		res.locals.sponsors = sponsors;
 		next();
 	});
-}
-
+};
 
 /**
 	Inits the error handler functions into `req`
@@ -69,18 +66,17 @@ exports.initErrorHandlers = function(req, res, next) {
 		res.status(500).render('errors/500', {
 			err: err,
 			errorTitle: title,
-			errorMsg: message
+			errorMsg: message,
 		});
-	}
+	};
 	res.notfound = function(title, message) {
 		res.status(404).render('errors/404', {
 			errorTitle: title,
-			errorMsg: message
+			errorMsg: message,
 		});
-	}
+	};
 	next();
 };
-
 
 /**
 	Fetches and clears the flashMessages before a view is rendered
@@ -91,9 +87,9 @@ exports.flashMessages = function(req, res, next) {
 		info: req.flash('info'),
 		success: req.flash('success'),
 		warning: req.flash('warning'),
-		error: req.flash('error')
+		error: req.flash('error'),
 	};
-	res.locals.messages = _.any(flashMessages, function(msgs) { return msgs.length }) ? flashMessages : false;
+	res.locals.messages = _.any(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
 	next();
 };
 
@@ -108,7 +104,7 @@ exports.requireUser = function(req, res, next) {
 	} else {
 		next();
 	}
-}
+};
 
 /**
 	Returns a closure that can be used within views to change a parameter in the query string
@@ -127,5 +123,5 @@ var qs_set = exports.qs_set = function(req, res) {
 		}
 		var qs = querystring.stringify(params);
 		return req.path + (qs ? '?' + qs : '');
-	}
-}
+	};
+};

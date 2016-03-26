@@ -8,7 +8,7 @@ var Types = keystone.Field.Types;
 
 var Organisation = new keystone.List('Organisation', {
 	track: true,
-	autokey: { path: 'key', from: 'name', unique: true }
+	autokey: { path: 'key', from: 'name', unique: true },
 });
 
 Organisation.add({
@@ -17,7 +17,7 @@ Organisation.add({
 	website: Types.Url,
 	isHiring: Boolean,
 	description: { type: Types.Markdown },
-	location: Types.Location
+	location: Types.Location,
 });
 
 

@@ -56,7 +56,7 @@ keystone.init({
 
 });
 
-keystone.import('models');
+keystone.import('./models');
 
 keystone.set('routes', require('./routes'));
 
@@ -85,11 +85,8 @@ keystone.set('email locals', {
 });
 
 keystone.set('nav', {
-	// 'meetups': ['meetups', 'talks', 'rsvps'],
-	// 'members': ['users', 'organisations'],
 	'posts': ['posts', 'post-categories', 'post-comments'],
 	'feature-slides': ['feature-slides'],
-	// 'links': ['links', 'link-tags', 'link-comments'],
 });
 
 keystone.start();

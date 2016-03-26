@@ -20,7 +20,7 @@ Talk.add({
 	who: { type: Types.Relationship, ref: 'User', many: true, index: true },
 	description: { type: Types.Html, wysiwyg: true },
 	slides: { type: Types.Url },
-	link: { type: Types.Url }
+	link: { type: Types.Url },
 });
 
 Talk.schema.set('toJSON', {
