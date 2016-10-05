@@ -6,19 +6,13 @@ include ../../mixins/post-card
 include ../../mixins/meetup-talk
 include ../../mixins/advertisement
 
-//- INTRO
-block intro
-
-	//- HERO
-	if !meetup
-		h2.text-center You've just deployed a new site! Go add some data :)
 //- BODY
 block content
 	.page-content
 		article
 			#react-home-carousel
 				include ../../includes/loading
-		
+
 		// latest posts
 		article
 			.row

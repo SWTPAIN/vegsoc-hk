@@ -14,9 +14,10 @@ block content
 					span.date
 						if post.publishedDate
 							= post._.publishedDate.format('MMMM D, YYYY')
-					span.writer
-						| by 
-						a= post.author.name.full
+					if post.author
+						span.writer
+							| by
+							a= post.author.name.full
 
 			figure.post-image-wrapper
 				.post-image.mv-3: img(src=post.image.secure_url).img-responsive.img-thumbnail
@@ -28,10 +29,10 @@ block content
 					article.full-post
 						header
 							if post.state != 'published' && user.isAdmin
-								.mt-1: .alert.alert-danger This Post has not been published yet. 
+								.mt-1: .alert.alert-danger This Post has not been published yet.
 									a(href='/keystone/posts/' + post.id).alert-link Open Keystone
 									|  to publish it.
-							
+
 						!= post.content.full
 
 						//- Comment
@@ -63,7 +64,7 @@ block content
 					.latest-post-container
 						.latest-post-card
 							h4.latest-post-header
-								| Latest Articles						
+								| Latest Articles
 							ul.article-list
 								each post in data.latestPosts
 									li
