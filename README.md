@@ -1,26 +1,21 @@
-# sydjs.com
-## The VegsocHK Website.
+# The VegsocHK Website.
 ## Getting Started
 To run the VegsocHK site locally, there are a few things to set up.
 
 Because we have some private keys for our MongoDB, Cloudinary and Mandrill accounts, you'll need to set up your own equivalents before the site will run properly.
 
 ### Install Node.js and MongoDB
-You'll need node 0.10.x and npm 1.3.x installed to run VegsocHK. The easiest way is to download the installers from [nodejs.org](http://nodejs.org).
 
-You'll also need MongoDB 2.4.x - if you're on a Mac, the easiest way is to install [homebrew](http://brew.sh) and then run `brew install mongo`.
-
-If you're on a Mac you'll also need Xcode and the Command Line Tools installed or the build process won't work.
+```
+brew install mongo
+``
 
 ### Setting up your copy of VegsocHK
-Get a local copy of the site by cloning this repository, or fork it to work on your own copy.
+```
+npm install
+```
 
-Then run `npm install` to download the dependencies.
-
-Before you continue, create a file called `.env` in the root folder of the project (this will be ignored by git). This file is used to emulate the environment config of our production server, in development. Any `key=value` settings you put in there (one on each line) will be set as environment variables in `process.env`.
-
-The only line you **need** to add to your `.env` file is a valid `CLOUDINARY_URL`. To get one of these, sign up for a free account at [Cloudinary](http://cloudinary.com) and paste the environment variable if gives you into your `.env` file. It should look something like this:
-
+.env
 ```
 CLOUDINARY_URL=cloudinary://12345:abcde@cloudname
 ```
@@ -45,7 +40,24 @@ You'll probably want to add some other content too (blog post, members, etc) to 
 
 ... happy hacking!
 
+
 ### Deploy
+
+# Server git deploy setup
+
+```
+apt-get -y install git
+groupadd git
+visudo
+git ALL=(ALL) NOPASSWD: ALL
+
+mkdir -p /home/git/.ssh
+touch /home/git/.ssh/authorized_keys
+chmod 600 /home/git/.ssh/authorized_keys
+useradd -g git -G www-data -d /home/git -s /bin/bash git
+chown -R git:git /home/git
+```
+
 # Server Nginx setup
 Create a digital ocean droplet got the new IP in digital ocean web console, e.g. 128.199.244.233
 
@@ -57,6 +69,7 @@ apt-get install build-essential libssl-dev
 apt-get -y install nginx
 service nginx start
 mkdir -p /var/www
+useradd git
 sudo chown root:git -R /var/www
 sudo chmod 775 /var/www
 
@@ -74,7 +87,7 @@ server {
 
         root /var/www/vegsochk.org/public;
 
-        location ~ ^/keystone/(.+\.(?:jpg|jpeg|svg|eot|html|woff|woff2|ttf|png|gif|ico|css|js))$ {
+        location ~ ^/keystone/(.+\.(?:jpg|jpeg|svg|eot|html|woff|woff2|ttf|png|gif|ico|css))$ {
                 alias /var/www/vegsochk.org/node_modules/keystone/admin/public/$1;
                 expires 30d;
                 access_log off;
@@ -106,26 +119,12 @@ ln -s ../sites-available/vegsochk.org
 service nginx reload
 ```
 
-# Server git deploy setup
-
-```
-apt-get -y install git
-groupadd git
-visudo
-git ALL=(ALL) NOPASSWD: ALL
-
-mkdir -p /home/git/.ssh
-touch /home/git/.ssh/authorized_keys
-chmod 600 /home/git/.ssh/authorized_keys
-useradd -g git -G www-data -d /home/git -s /bin/bash git
-chown -R git:git /home/git
-```
-
 # Server Nodejs setup
 
 ```
 npm install -g forever
 ```
+
 
 Login as git and configure the git folders
 
@@ -177,7 +176,7 @@ vi /home/git/.ssh/authorized_keys
 Local Machine
 
 ```
-git remote add staging git@128.199.244.233:repos/vegsoc-hk.git
+git remote add staging git@128.199.233.104:repos/vegsoc-hk.git
 git push staging master
 ```
 

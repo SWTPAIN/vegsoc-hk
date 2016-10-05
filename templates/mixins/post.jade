@@ -5,7 +5,7 @@ mixin post(post)
 				a(href='/article/post/' + post.slug).post-image: img(src=post._.image.thumbnail(600,320), alt=post.title).img-responsive
 			.post-summary
 				.post-byline
-					.post-author: a(href='/article/post/' + post.slug)=post.author.name.full
+					.post-author: a(href='/article/post/' + post.slug)=(post.author && post.author.name.full)
 					//- .date-stamp: em=moment(post.publishedDate).fromNow()
 
 				h4(itemprop='name').post-title.mv-1
