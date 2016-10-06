@@ -70,6 +70,7 @@ exports = module.exports = function (app) {
 	app.get('/meetups/:meetup', routes.views.meetup);
 	app.get('/organisations', routes.views.organisations);
 	app.get('/article/:category?', routes.views.article);
+	app.get('/author/:userId/posts', routes.views.user['posts']);
 	app.all('/article/post/:post', routes.views.post);
 	app.get('/about', routes.views.about);
 

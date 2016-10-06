@@ -1,4 +1,5 @@
 extends ../../layouts/default
+include ../../mixins/user/profile
 
 block content
 	.post-container
@@ -34,6 +35,7 @@ block content
 									|  to publish it.
 
 						!= post.content.full
+						+user-profile(post.author, true)
 
 						//- Comment
 							.comments

@@ -4,11 +4,8 @@ include ../../mixins/post
 
 block intro
 	.page-intro: .container
-		h1.page-title=data.category ? data.category.name : 'Article'
-		p.lead
-			| This is the blog of VegsocHK, contributed by our members and guest authors.&nbsp;
-			a(href='/join').js-auth-trigger Join now
-			| &nbsp;to contribute.
+		h1.category-title
+			span.category-title-text=data.category ? data.category.name : 'Article'
 
 block content
 	.page-content
@@ -26,7 +23,7 @@ block content
 							h3.text-muted No posts in the category #{data.category.name}.
 						else
 							h3.text-muted There are no posts yet.
-			
+
 			if data.categories.length
 				.col-md-2
 					if data.categories.length
