@@ -1,10 +1,11 @@
 mixin user-profile(user, showAllArticles)
-  .author-profile-wrapper
-    .author-profile
-      .author-profile-picture
-        img(src=user._.photo.thumbnail(300, 300))
-      .author-profile-content
-        .author-profile-name=user.name.full
-        .author-profile-bio=user.bio.md
-        if showAllArticles
-          a.author-all-articles(href='/author/' + user.id + '/posts', itemprop='url') 所有文章
+  if user
+    .author-profile-wrapper
+      .author-profile
+        .author-profile-picture
+          img(src=user._.photo.thumbnail(300, 300))
+        .author-profile-content
+          .author-profile-name=user.name.full
+          .author-profile-bio=user.bio.md
+          if showAllArticles
+            a.author-all-articles(href='/author/' + user.id + '/posts', itemprop='url') 所有文章
