@@ -4,7 +4,7 @@ mixin post-card(post)
 			.tile.front
 				.card-main
 					a(href='/article/post/' + post.slug, itemprop='url')
-						.card-image-holder(style=({'background-image': 'url(' + (post._.image.thumbnail(280, 200, {crop: 'fill'}) || '/images/post-default-cover.jpg') +')'}))						
+						.card-image-holder(style=({'background-image': 'url(' + (post._.image.thumbnail(280, 200, {crop: 'fill'}) || '/images/post-default-cover.jpg') +')'}))
 					section.card-body
 						p.datestamp
 							time(datetime=post._.publishedDate.format('YYYY-MM-DD'), itemprop='datePublished')=post._.publishedDate.format('MMMM D, YYYY')
@@ -15,4 +15,4 @@ mixin post-card(post)
 						!= post.content.brief
 					ul.link-list
 						a(href='/article/post/' + post.slug, itemprop='url')
-							| Find out more
+							| 閱讀更多

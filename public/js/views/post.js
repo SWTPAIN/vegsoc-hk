@@ -1,3 +1,3 @@
 $('.latest-post-container').fixTo('.post-container', {
-  top: 300
+  top: 0,
 });

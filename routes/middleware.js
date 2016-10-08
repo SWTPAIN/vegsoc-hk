@@ -10,12 +10,12 @@ exports.initLocals = function(req, res, next) {
 	var locals = res.locals;
 
 	locals.navLinks = [
-		{ label: 'Home',		key: 'home',		href: '/' },
-		{ label: 'About',		key: 'about',		href: '/about' },
-		{ label: 'Animal Rights',		key: 'animal-rights',		href: '/animal-rights' },
+		{ label: '主頁',		key: 'home',		href: '/' },
+		{ label: '關於我們',		key: 'about',		href: '/about' },
+		{ label: '動物',		key: 'animal-rights',		href: '/animal-rights' },
 		// { label: 'Meetups',		key: 'meetups',		href: '/meetups' },
-		{ label: 'Articles',		key: 'article',		href: '/article' },
-		{ label: 'Download Center',		key: 'download-center',		href: '/download-center' },
+		{ label: '文章',		key: 'article',		href: '/article' },
+		{ label: '下載資源',		key: 'download-center',		href: '/download-center' },
 	];
 
 	locals.user = req.user;
