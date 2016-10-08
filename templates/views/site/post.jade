@@ -71,12 +71,13 @@ block content
 								each post in data.latestPosts
 									li
 										a(href='/article/post/' + post.slug, itemprop='url')
-											.row
-												.col-xs-4.latest-post-thumnail-wrapper
+											.latest-post-wrapper
+												.latest-post-thumnail-wrapper
 													img(src=post._.image.thumbnail(100, 100, {crop: 'fill'}))
-												.col-xs-8
+												.latest-post-content-wrapper
 													span.latest-post-category
-														= post.categories[0].name
+														if post.categories && post.categories.length
+															= post.categories[0].name
 													h5.latest-post-title
 														= post.title
 													time(datetime=post._.publishedDate.format('YYYY-MM-DD'), itemprop='datePublished')=post._.publishedDate.format('MMMM D, YYYY')
