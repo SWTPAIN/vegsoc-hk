@@ -30,8 +30,8 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		var q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author categories');
 
-		if (locals.data.userId) {
-			q.where('id', locals.filters.userId);
+		if (locals.filters.userId) {
+			q.where('author', locals.filters.userId);
 		}
 
 		q.exec(function(err, results) {
